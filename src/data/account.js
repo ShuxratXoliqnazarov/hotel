@@ -1,22 +1,6 @@
 import logoEmirates from '@/assets/images/flights/logo-emirates.png'
 import cvk from '@/assets/images/hotels/cvk-1.jpg'
 
-export const profile = {
-  name: 'John Doe.',
-  email: 'john.doe@gmail.com',
-  avatarAlt: 'John Doe',
-}
-
-/** Поля на вкладке Account. multiple — есть кнопка «Add another email». */
-export const profileFields = [
-  { id: 'name', label: 'Name', value: 'John Doe' },
-  { id: 'email', label: 'Email', value: 'john.doe@gmail.com', multiple: true },
-  { id: 'password', label: 'Password', value: '•••••••••••••' },
-  { id: 'phone', label: 'Phone number', value: '+1 000-000-0000' },
-  { id: 'address', label: 'Address', value: 'St 32 main downtown, Los Angeles, California, USA' },
-  { id: 'birth', label: 'Date of birth', value: '01-01-1992' },
-]
-
 const flight = (id) => ({
   id,
   logo: logoEmirates,
@@ -50,5 +34,3 @@ export const bookings = {
 }
 
 export const bookingPeriods = ['Upcoming', 'Completed', 'Cancelled']
-
-export const paymentCards = [{ id: 'visa-4321', number: '**** **** ****', last4: '4321', validThru: '02/27' }]

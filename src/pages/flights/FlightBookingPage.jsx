@@ -9,6 +9,7 @@ import PaymentCards from './components/PaymentCards'
 import AddCardModal from './components/AddCardModal'
 import PriceSummary from './components/PriceSummary'
 import { getFlightDetail, savedCards } from '@/data/flights'
+import { useAuth } from '@/context/authContext'
 
 /**
  * Бронирование: гость видит форму входа, после «входа» — выбор карты.
@@ -18,8 +19,10 @@ export default function FlightBookingPage() {
   const { flightId } = useParams()
   const navigate = useNavigate()
   const flight = getFlightDetail(flightId)
+  const { user } = useAuth()
 
-  const [isLoggedIn, setIsLoggedIn] = useState(false)
+  // вошедшему пользователю форма входа не нужна
+  const [isLoggedIn, setIsLoggedIn] = useState(Boolean(user))
   const [selectedCard, setSelectedCard] = useState(savedCards[0].id)
   const [isModalOpen, setIsModalOpen] = useState(false)
 

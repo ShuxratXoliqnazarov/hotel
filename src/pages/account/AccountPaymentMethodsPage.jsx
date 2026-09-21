@@ -4,22 +4,17 @@ import AccountShell from './components/AccountShell'
 import AddCardModal from '@/pages/flights/components/AddCardModal'
 import AddCircleIcon from '@/assets/icons/add-circle.svg?react'
 import TrashIcon from '@/assets/icons/trash.svg?react'
-import { paymentCards } from '@/data/account'
+import { useAuth } from '@/context/authContext'
+import { createCard } from '@/lib/cards'
 
 export default function AccountPaymentMethodsPage() {
-  const [cards, setCards] = useState(paymentCards)
+  const { user, addCard, removeCard } = useAuth()
   const [isModalOpen, setIsModalOpen] = useState(false)
 
-  const handleAddCard = ({ number = '', expires = '02/27' }) => {
-    const digits = number.replace(/\D/g, '')
-    setCards((prev) => [
-      ...prev,
-      { id: `card-${prev.length + 1}`, number: '**** **** ****', last4: digits.slice(-4) || '0000', validThru: expires },
-    ])
+  const handleAddCard = (form) => {
+    addCard(createCard(form))
     setIsModalOpen(false)
   }
-
-  const handleRemove = (id) => setCards((prev) => prev.filter((card) => card.id !== id))
 
   return (
     <AccountShell>
@@ -27,14 +22,14 @@ export default function AccountPaymentMethodsPage() {
 
       <div className="rounded-xl bg-white p-6 shadow-card">
         <div className="flex flex-wrap gap-6">
-          {cards.map((card) => (
+          {user.cards.map((card) => (
             <article
               key={card.id}
               className="group relative flex h-[190px] w-full max-w-[415px] flex-col justify-between rounded-xl bg-primary p-4 transition-[translate,box-shadow] hover:-translate-y-1 hover:shadow-glow sm:w-[415px]"
             >
               <button
                 type="button"
-                onClick={() => handleRemove(card.id)}
+                onClick={() => removeCard(card.id)}
                 aria-label="Удалить карту"
                 className="absolute top-4 right-4 grid size-8 place-items-center rounded transition-colors hover:bg-white/40"
               >

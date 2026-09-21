@@ -1,6 +1,7 @@
 import { createBrowserRouter } from 'react-router-dom'
 import MainLayout from '@/layouts/MainLayout'
 import ScrollToTop from '@/components/layout/ScrollToTop'
+import RequireAuth from '@/components/layout/RequireAuth'
 
 // Landing
 import LandingPage from '@/pages/landing/LandingPage'
@@ -36,8 +37,8 @@ import AccountPaymentMethodsPage from '@/pages/account/AccountPaymentMethodsPage
 /**
  * Все маршруты приложения.
  * - без layout: Landing (своя шапка в hero) и страницы входа/регистрации
- * - MainLayout: гостевая шапка (Login / Sign up)
- * - MainLayout loggedIn: шапка с Favourites и аватаром
+ * - MainLayout: шапка и подвал (в шапке сам определяется, вошёл пользователь или нет)
+ * - RequireAuth: личный кабинет только для авторизованных
  */
 export const router = createBrowserRouter([
   {
@@ -53,7 +54,7 @@ export const router = createBrowserRouter([
       { path: '/forgot-password/verify', element: <VerifyCodePage /> },
       { path: '/forgot-password/reset', element: <SetPasswordPage /> },
 
-      // Гость
+      // Поиск доступен всем
       {
         element: <MainLayout />,
         children: [
@@ -62,9 +63,9 @@ export const router = createBrowserRouter([
         ],
       },
 
-      // Авторизованный пользователь
+      // Остальные страницы
       {
-        element: <MainLayout loggedIn />,
+        element: <MainLayout />,
         children: [
           { path: '/flights/list', element: <FlightListingPage /> },
           { path: '/flights/:flightId', element: <FlightDetailPage /> },
@@ -77,9 +78,15 @@ export const router = createBrowserRouter([
           { path: '/hotels/:hotelId/ticket', element: <HotelTicketPage /> },
           { path: '/favourites', element: <FavouritesPage /> },
 
-          { path: '/account', element: <AccountPage /> },
-          { path: '/account/history', element: <AccountHistoryPage /> },
-          { path: '/account/payment-methods', element: <AccountPaymentMethodsPage /> },
+          // Личный кабинет доступен только после входа
+          {
+            element: <RequireAuth />,
+            children: [
+              { path: '/account', element: <AccountPage /> },
+              { path: '/account/history', element: <AccountHistoryPage /> },
+              { path: '/account/payment-methods', element: <AccountPaymentMethodsPage /> },
+            ],
+          },
         ],
       },
     ],

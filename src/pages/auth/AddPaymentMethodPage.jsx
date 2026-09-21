@@ -1,18 +1,25 @@
-import { useNavigate } from 'react-router-dom'
+import { Navigate, useNavigate } from 'react-router-dom'
 import Button from '@/components/ui/Button'
 import Checkbox from '@/components/ui/Checkbox'
 import TextField from '@/components/ui/TextField'
 import VisaBadge from '@/components/ui/VisaBadge'
 import AuthLayout from './components/AuthLayout'
 import ChevronDownIcon from '@/assets/icons/chevron-down.svg?react'
+import { useAuth } from '@/context/authContext'
+import { createCard } from '@/lib/cards'
 
 const COUNTRIES = ['United States', 'United Kingdom', 'Uzbekistan', 'Turkey', 'UAE']
 
 export default function AddPaymentMethodPage() {
+  const { user, addCard } = useAuth()
   const navigate = useNavigate()
+
+  // Шаг регистрации: без аккаунта сюда попадать незачем
+  if (!user) return <Navigate to="/signup" replace />
 
   const handleSubmit = (event) => {
     event.preventDefault()
+    addCard(createCard(Object.fromEntries(new FormData(event.currentTarget))))
     navigate('/account/payment-methods')
   }
 

@@ -3,7 +3,7 @@ import Reveal from '@/components/ui/Reveal'
 import CloudUploadIcon from '@/assets/icons/cloud-upload.svg?react'
 import PencilIcon from '@/assets/icons/pencil.svg?react'
 import avatar from '@/assets/images/common/avatar.jpg'
-import { profile } from '@/data/account'
+import { useAuth } from '@/context/authContext'
 
 const TABS = [
   { label: 'Account', to: '/account' },
@@ -17,6 +17,8 @@ const COVER =
 
 /** Обложка, аватар и вкладки — общая шапка для всех страниц аккаунта. */
 export default function AccountShell({ children }) {
+  const { user } = useAuth()
+
   return (
     <div className="container-page flex flex-col gap-8 pt-12 pb-[120px]">
       <header className="flex flex-col items-center">
@@ -36,7 +38,7 @@ export default function AccountShell({ children }) {
         <div className="relative -mt-[76px]">
           <img
             src={avatar}
-            alt={profile.avatarAlt}
+            alt={`${user.firstName} ${user.lastName}`}
             className="size-[152px] rounded-full border-4 border-white object-cover object-[28%_0%] shadow-card-lg"
           />
           <button
@@ -48,8 +50,10 @@ export default function AccountShell({ children }) {
           </button>
         </div>
 
-        <h1 className="mt-4 text-xl leading-6 font-semibold">{profile.name}</h1>
-        <p className="mt-1 text-sm text-ink/60">{profile.email}</p>
+        <h1 className="mt-4 text-xl leading-6 font-semibold">
+          {user.firstName} {user.lastName}
+        </h1>
+        <p className="mt-1 text-sm text-ink/60">{user.email}</p>
       </header>
 
       <nav className="grid grid-cols-1 overflow-hidden rounded-xl bg-white shadow-card sm:grid-cols-3">

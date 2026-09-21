@@ -1,6 +1,7 @@
 import { Link, NavLink } from 'react-router-dom'
 import Logo from './Logo'
 import Button from '@/components/ui/Button'
+import { useAuth } from '@/context/authContext'
 import AirplaneIcon from '@/assets/icons/airplane.svg?react'
 import BedIcon from '@/assets/icons/bed.svg?react'
 import HeartIcon from '@/assets/icons/heart.svg?react'
@@ -15,16 +16,17 @@ const NAV_ITEMS = [
 /**
  * Шапка сайта.
  * - transparent: прозрачная, белый текст (поверх hero на лендинге)
- * - loggedIn: справа «Favourites» и аватар вместо Login / Sign up
+ * - справа «Favourites» и аватар, если пользователь вошёл, иначе Login / Sign up
  */
-export default function Header({ transparent = false, loggedIn = false }) {
+export default function Header({ transparent = false }) {
+  const { user } = useAuth()
   const textColor = transparent ? 'text-white' : 'text-ink'
 
   return (
     <header className={`animate-fade-down ${transparent ? '' : 'relative z-10 bg-white shadow-card'}`}>
       <div
         className={`flex items-center justify-between gap-4 ${
-          transparent ? 'h-24 px-4 md:px-8' : `container-page ${loggedIn ? 'h-[87px]' : 'h-[90px]'}`
+          transparent ? 'h-24 px-4 md:px-8' : `container-page ${user ? 'h-[87px]' : 'h-[90px]'}`
         } ${textColor}`}
       >
         <nav className="flex h-full flex-1 items-center gap-4 md:gap-8">
@@ -34,7 +36,9 @@ export default function Header({ transparent = false, loggedIn = false }) {
               to={to}
               className={({ isActive }) =>
                 `group relative flex h-full items-center gap-1 text-sm font-semibold after:absolute after:inset-x-0 after:origin-left after:transition-transform after:duration-700 after:ease-smooth ${
-                  transparent ? 'after:bottom-6 after:h-0.5 after:bg-white' : 'after:bottom-0 after:h-[5px] after:bg-primary'
+                  transparent
+                    ? 'after:bottom-6 after:h-0.5 after:bg-white'
+                    : 'after:bottom-0 after:h-[5px] after:bg-primary'
                 } ${isActive && !transparent ? 'after:scale-x-100' : 'after:scale-x-0 hover:after:scale-x-100'}`
               }
             >
@@ -47,7 +51,7 @@ export default function Header({ transparent = false, loggedIn = false }) {
         <Logo light={transparent} className="shrink-0" />
 
         <div className="flex flex-1 items-center justify-end gap-4 md:gap-8">
-          {loggedIn ? <UserMenu /> : <AuthButtons transparent={transparent} />}
+          {user ? <UserMenu user={user} /> : <AuthButtons transparent={transparent} />}
         </div>
       </div>
     </header>
@@ -67,7 +71,9 @@ function AuthButtons({ transparent }) {
   )
 }
 
-function UserMenu() {
+function UserMenu({ user }) {
+  const shortName = `${user.firstName} ${user.lastName.charAt(0)}.`
+
   return (
     <>
       <Link to="/favourites" className="group hidden items-center gap-4 text-sm font-semibold md:flex">
@@ -89,7 +95,7 @@ function UserMenu() {
             <ChevronDownIcon className="size-2.5" />
           </span>
         </span>
-        <span className="hidden sm:inline">John D.</span>
+        <span className="hidden sm:inline">{shortName}</span>
       </Link>
     </>
   )
