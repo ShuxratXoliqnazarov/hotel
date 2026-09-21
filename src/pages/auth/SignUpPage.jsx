@@ -19,18 +19,19 @@ export default function SignUpPage() {
       <form onSubmit={handleSubmit} className="flex flex-col gap-6">
         <div className="flex flex-col gap-6">
           <div className="grid gap-6 sm:grid-cols-2">
-            <TextField label="First Name" defaultValue="john.doe@gmail.com" />
-            <TextField label="Last Name" defaultValue="john.doe@gmail.com" />
+            <TextField label="First Name" required />
+            <TextField label="Last Name" required />
           </div>
           <div className="grid gap-6 sm:grid-cols-2">
-            <TextField label="Email" type="email" defaultValue="john.doe@gmail.com" />
-            <TextField label="Phone Number" type="tel" defaultValue="john.doe@gmail.com" />
+            <TextField label="Email" type="email" required />
+            <TextField label="Phone Number" type="tel" required />
           </div>
-          <PasswordField defaultValue="password123456" />
-          <PasswordField label="Confirm Password" defaultValue="password123456" />
+          <PasswordField required />
+          <PasswordField label="Confirm Password" required />
         </div>
 
         <Checkbox
+          required
           label={
             <>
               I agree to all the{' '}

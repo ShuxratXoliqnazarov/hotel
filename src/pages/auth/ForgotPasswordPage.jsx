@@ -19,7 +19,7 @@ export default function ForgotPasswordPage() {
       back={{ to: '/login', label: 'Back to login' }}
     >
       <form onSubmit={handleSubmit} className="flex flex-col gap-6">
-        <TextField label="Email" type="email" defaultValue="john.doe@gmail.com" />
+        <TextField label="Email" type="email" required />
         <Button type="submit" className="w-full text-base">
           Submit
         </Button>

@@ -18,8 +18,8 @@ export default function SetPasswordPage() {
     >
       <form onSubmit={handleSubmit} className="flex flex-col gap-6">
         <div className="flex flex-col gap-6">
-          <PasswordField label="Create Password" defaultValue="7789BM6X@)H&$K_" />
-          <PasswordField label="Re-enter Password" defaultValue="7789BM6X@)H&$K_" />
+          <PasswordField label="Create Password" required />
+          <PasswordField label="Re-enter Password" required />
         </div>
 
         <Button type="submit" className="w-full text-base">

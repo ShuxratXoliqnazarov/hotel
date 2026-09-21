@@ -18,8 +18,8 @@ export default function LoginPage() {
     <AuthLayout title="Login" subtitle="Login to access your Golobe account">
       <form onSubmit={handleSubmit} className="flex flex-col gap-6">
         <div className="flex flex-col gap-6">
-          <TextField label="Email" type="email" defaultValue="john.doe@gmail.com" />
-          <PasswordField defaultValue="password123456" />
+          <TextField label="Email" type="email" required />
+          <PasswordField required />
         </div>
 
         <div className="flex items-center justify-between gap-4">

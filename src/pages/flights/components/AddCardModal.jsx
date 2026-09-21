@@ -57,15 +57,15 @@ export default function AddCardModal({ onClose, onSubmit }) {
             <TextField
               name="number"
               label="Card Number"
-              defaultValue="4321 4321 4321 4321"
               inputMode="numeric"
+              required
               trailing={<VisaBadge className="bg-[#1434cb]" />}
             />
             <div className="grid grid-cols-2 gap-6">
-              <TextField name="expires" label="Exp. Date" defaultValue="02/27" />
-              <TextField name="cvc" label="CVC" defaultValue="123" inputMode="numeric" />
+              <TextField name="expires" label="Exp. Date" placeholder="MM/YY" required />
+              <TextField name="cvc" label="CVC" inputMode="numeric" required />
             </div>
-            <TextField name="name" label="Name on Card" defaultValue="John Doe" />
+            <TextField name="name" label="Name on Card" required />
             <TextField
               as="select"
               name="country"

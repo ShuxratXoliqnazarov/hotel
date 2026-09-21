@@ -19,7 +19,7 @@ export default function VerifyCodePage() {
     >
       <form onSubmit={handleSubmit} className="flex flex-col gap-6">
         <div className="flex flex-col gap-2">
-          <PasswordField label="Enter Code" defaultValue="7789BM6X" defaultVisible />
+          <PasswordField label="Enter Code" defaultVisible required />
           <p className="text-sm">
             Didn’t receive a code?{' '}
             <button type="button" className="font-medium text-accent hover:underline">

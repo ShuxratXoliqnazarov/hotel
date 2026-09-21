@@ -26,7 +26,7 @@ export default function TextField({
       )}
 
       <Control
-        className={`h-full w-full min-w-0 appearance-none truncate bg-transparent pl-4 text-base text-[#1c1b1f] outline-none placeholder:text-[#1c1b1f] ${
+        className={`h-full w-full min-w-0 appearance-none truncate bg-transparent pl-4 text-base text-[#1c1b1f] outline-none placeholder:text-ink/40 ${
           trailing ? 'pr-12' : 'pr-4'
         } ${inputClassName}`}
         {...props}
