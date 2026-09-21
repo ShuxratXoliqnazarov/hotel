@@ -1,27 +1,38 @@
-import hotelPool from '@/assets/images/landing/promo-hotels.jpg'
-import lake from '@/assets/images/landing/hero.jpg'
 import male from '@/assets/images/landing/male.jpg'
 import istanbul from '@/assets/images/landing/istanbul.jpg'
 import sydney from '@/assets/images/landing/sydney.jpg'
 import baku from '@/assets/images/landing/baku.jpg'
-import dubai from '@/assets/images/landing/dubai.jpg'
-import paris from '@/assets/images/landing/paris.jpg'
-import tokyo from '@/assets/images/landing/tokyo.jpg'
 import sriLanka1 from '@/assets/images/flights/srilanka-1.jpg'
 import sriLanka2 from '@/assets/images/flights/srilanka-2.jpg'
 import sriLanka3 from '@/assets/images/flights/srilanka-3.jpg'
 import sriLanka4 from '@/assets/images/flights/srilanka-4.jpg'
-import melbourne from '@/assets/images/flights/melbourne.jpg'
-import london from '@/assets/images/flights/london.jpg'
-import columbia from '@/assets/images/flights/columbia.jpg'
 import bookingThumb from '@/assets/images/flights/booking-thumb.jpg'
+import cvk1 from '@/assets/images/hotels/cvk-1.jpg'
+import cvk2 from '@/assets/images/hotels/cvk-2.jpg'
+import cvk3 from '@/assets/images/hotels/cvk-3.jpg'
+import cvk4 from '@/assets/images/hotels/cvk-4.jpg'
+import cvk5 from '@/assets/images/hotels/cvk-5.jpg'
+import lounge from '@/assets/images/hotels/lounge.jpg'
+import whiteHotel from '@/assets/images/hotels/white-hotel.jpg'
+import pillow from '@/assets/images/hotels/pillow.jpg'
+import tropicalPool from '@/assets/images/hotels/tropical-pool.jpg'
+import nightPool from '@/assets/images/hotels/night-pool.jpg'
+import grandFacade from '@/assets/images/hotels/grand-facade.jpg'
+import palmPool from '@/assets/images/hotels/palm-pool.jpg'
+import sunsetPool from '@/assets/images/hotels/sunset-pool.jpg'
+import whiteVilla from '@/assets/images/hotels/white-villa.jpg'
+import duskPool from '@/assets/images/hotels/dusk-pool.jpg'
+import roomModern from '@/assets/images/hotels/room-modern.jpg'
+import roomWood from '@/assets/images/hotels/room-wood.jpg'
+import roomClassic from '@/assets/images/hotels/room-classic.jpg'
+import roomTeak from '@/assets/images/hotels/room-teak.jpg'
+import roomCity from '@/assets/images/hotels/room-city.jpg'
 import avatar from '@/assets/images/common/avatar.jpg'
 import review1 from '@/assets/images/landing/review-1.jpg'
 import review2 from '@/assets/images/landing/review-2.jpg'
 import review3 from '@/assets/images/landing/review-3.jpg'
 
-// Фото отелей — заглушки из уже лежащих в репо картинок (в Figma другие фото отелей).
-// Когда будут экспортированы настоящие — заменить импорты выше, остальное менять не надо.
+// Фото отелей лежат в assets/images/hotels (cvk-* — из макета, остальные подобраны по теме).
 
 /* ---------- Hotel Search ---------- */
 
@@ -58,9 +69,9 @@ const OVERVIEW =
 const room = (id, name, image, price, features) => ({ id, name, image, price, features })
 
 const defaultRooms = [
-  room('deluxe', 'Deluxe Double Room', sriLanka2, 240, ['1 king bed', 'City view', 'Free Wi-Fi', 'Breakfast included']),
-  room('family', 'Family Suite', sriLanka3, 320, ['2 queen beds', 'Balcony', 'Kitchenette', 'Free cancellation']),
-  room('presidential', 'Presidential Suite', sriLanka4, 560, ['1 king bed', 'Panoramic view', 'Private jacuzzi', 'Lounge access']),
+  room('deluxe', 'Deluxe Double Room', roomModern, 240, ['1 king bed', 'City view', 'Free Wi-Fi', 'Breakfast included']),
+  room('family', 'Family Suite', roomClassic, 320, ['2 queen beds', 'Balcony', 'Kitchenette', 'Free cancellation']),
+  room('presidential', 'Presidential Suite', roomTeak, 560, ['1 king bed', 'Panoramic view', 'Private jacuzzi', 'Lounge access']),
 ]
 
 const hotel = (fields) => ({
@@ -83,8 +94,8 @@ export const hotels = [
     name: 'CVK Park Bosphorus Hotel Istanbul',
     price: 240,
     rating: 4.2,
-    image: hotelPool,
-    gallery: [hotelPool, sriLanka1, sriLanka2, sriLanka3, sriLanka4],
+    image: cvk1,
+    gallery: [cvk1, cvk2, cvk3, cvk4, cvk5],
     freebies: ['Free breakfast', 'Free parking', 'Free cancellation'],
     facilities: ['24hr front desk', 'Air-conditioned', 'Fitness', 'Pool'],
   }),
@@ -97,8 +108,8 @@ export const hotels = [
     ratingLabel: 'Excellent',
     stars: 4,
     amenities: 24,
-    image: istanbul,
-    gallery: [istanbul, sydney, baku, dubai, paris],
+    image: whiteHotel,
+    gallery: [whiteHotel, sunsetPool, pillow, roomCity, nightPool],
     freebies: ['Free breakfast', 'Free internet'],
     facilities: ['Air-conditioned', 'Fitness'],
   }),
@@ -111,8 +122,8 @@ export const hotels = [
     ratingLabel: 'Excellent',
     amenities: 32,
     address: 'North Malé Atoll, Kaafu, Maldives',
-    image: male,
-    gallery: [male, lake, sriLanka2, sriLanka1, melbourne],
+    image: tropicalPool,
+    gallery: [tropicalPool, palmPool, lounge, duskPool, roomTeak],
     freebies: ['Free breakfast', 'Free airport shuttle', 'Free cancellation'],
     facilities: ['Pool', 'Air-conditioned', 'Fitness'],
   }),
@@ -125,8 +136,8 @@ export const hotels = [
     ratingLabel: 'Very Good',
     stars: 4,
     address: '1 Macquarie St, Sydney NSW 2000, Australia',
-    image: sydney,
-    gallery: [sydney, melbourne, london, columbia, tokyo],
+    image: grandFacade,
+    gallery: [grandFacade, nightPool, roomClassic, whiteVilla, roomWood],
     freebies: ['Free internet', 'Free parking'],
     facilities: ['24hr front desk', 'Pool'],
   }),
@@ -139,8 +150,8 @@ export const hotels = [
     ratingLabel: 'Good',
     stars: 4,
     address: 'Mehdi Huseyn 1, Baku AZ1006, Azerbaijan',
-    image: baku,
-    gallery: [baku, istanbul, dubai, paris, tokyo],
+    image: whiteVilla,
+    gallery: [whiteVilla, sunsetPool, roomModern, pillow, roomWood],
     freebies: ['Free breakfast'],
     facilities: ['Air-conditioned', 'Fitness'],
   }),
@@ -153,8 +164,8 @@ export const hotels = [
     stars: 3,
     amenities: 12,
     address: '12 Rue Saint-Jacques, 75005 Paris, France',
-    image: paris,
-    gallery: [paris, london, columbia, sydney, baku],
+    image: duskPool,
+    gallery: [duskPool, grandFacade, roomClassic, lounge, palmPool],
     freebies: ['Free internet', 'Free cancellation'],
     facilities: ['24hr front desk', 'Air-conditioned'],
   }),
